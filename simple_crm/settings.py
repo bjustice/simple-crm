@@ -26,7 +26,7 @@ SECRET_KEY = 'wi@qep)dgk$a!3^94r@8&9^l*i%l@3-=284=t7f75v^0vg-nsg'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [ "simple-crm-aybt4.ondigitalocean.app" ]
 
 
 # Application definition
