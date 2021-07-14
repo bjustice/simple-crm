@@ -25,9 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = [ "simple-crm-aybt4.ondigitalocean.app", "myquickcrm.com" ]
-
-
+ALLOWED_HOSTS = os.getenv("MSCRM_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
 # Application definition
 
 INSTALLED_APPS = [
