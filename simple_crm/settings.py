@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
-DEBUG = os.getenv("DEBUG", "False") == "True"
+DEBUG = "True"
 
 ALLOWED_HOSTS = os.getenv("MSCRM_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
 # Application definition
@@ -72,16 +72,29 @@ WSGI_APPLICATION = 'simple_crm.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'db',
-        'USER': os.getenv("MSCRM_DB_USER", ""),
-        'PASSWORD': os.getenv("MSCRM_DB_PASSWORD", ""),
-        'HOST': os.getenv("MSCRM_DB_HOST", ""),
-        'PORT': os.getenv("MSCRM_DB_PORT", ""),
+DATABASES = {}
+if os.getenv("MSCRM_DB_HOST", "") != "":
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'db',
+            'PASSWORD': os.getenv("MSCRM_DB_PASSWORD", ""),
+            'USER': os.getenv("MSCRM_DB_USER", ""),
+            'HOST': os.getenv("MSCRM_DB_HOST", ""),
+            'PORT': os.getenv("MSCRM_DB_PORT", ""),
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'myquickcrm',
+            'USER': 'postgres',
+            'PASSWORD': 'password',
+            'HOST': 'localhost',
+            'PORT': '5432',
+        }
+    }
 
 
 # Password validation
