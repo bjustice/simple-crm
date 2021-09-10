@@ -15,6 +15,7 @@ from ..models import Record
 
 logger = logging.getLogger(__name__)
 
+@login_required(login_url="/mycrm/login")
 def post_record(request):
     if request.method == 'POST':
         form = AddRecordForm(request.POST)
@@ -27,10 +28,12 @@ def post_record(request):
     else:
         return render(request, 'mycrm/record/add.html')
 
+@login_required(login_url="/mycrm/login")
 def summary(request):
     records = Record.objects.all()
     return render(request, 'mycrm/record/summary.html', { 'records': records })
 
+@login_required(login_url="/mycrm/login")
 def detail(request, record_id):
     if request.method == 'POST':
         

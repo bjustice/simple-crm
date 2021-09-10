@@ -46,56 +46,46 @@ class DashboardView(generic.TemplateView):
     abc = 'test'
     template_name = 'mycrm/dashboard.html'
 
-def vote(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
-    try:
-        selected_choice = question.choice_set.get(pk=request.POST['choice'])
-    except (KeyError, Choice.DoesNotExist):
-        # Redisplay the question voting form.
-        return render(request, 'mycrm/detail.html', {
-            'question': question,
-            'error_message': "You didn't select a choice.",
-        })
-    else:
-        selected_choice.votes += 1
-        selected_choice.save()
-        # Always return an HttpResponseRedirect after successfully dealing
-        # with POST data. This prevents data from being posted twice if a
-        # user hits the Back button.
-        return HttpResponseRedirect(reverse('mycrm:results', args=(question.id,)))
-
 def sign_in(request):
-
     form = LoginForm(request.POST or None)
     msg = None
     if request.method == "POST":
         if form.is_valid():
-            session['logged_in'] = True
             username = form.cleaned_data.get("username")
             password = form.cleaned_data.get("password")
             user = authenticate(username=username, password=password)
-            print(request.POST)
+            
+            if user is not None:
+                login(request, user)
             return redirect(request.POST.get('next', ''))
         else:
             msg = 'Error validating the form'    
     else:
         logger.warning("not post")
-        return render(request, "working/sign-in.html", {"form": form, "msg" : msg})
+        return render(request, "mycrm/sign-in.html", {"form": form, "msg" : msg})
 
 def sign_up(request):
-    return render(request, 'working/sign-up.html')
+    return render(request, 'mycrm/sign-up.html')
 
 @login_required(login_url="/mycrm/login")
 def home(request):
-    return render(request, 'working/index.html')
+    return render(request, 'mycrm/index.html')
 
+@login_required(login_url="/mycrm/login")
+def buttons(request):
+    return render(request, 'mycrm/ui-buttons.html')
 
-def dashboard(request):
-    return render(request, 'working/dashboard.html')
+@login_required(login_url="/mycrm/login")
+def settings(request):
+    return render(request, 'mycrm/settings.html')
+    
+@login_required(login_url="/mycrm/login")
+def forms(request):
+    return render(request, 'mycrm/ui-forms.html')
 
 @login_required(login_url="/mycrm/login")
 def dash(request):
     return render(request, 'mycrm/dashboard.html')
 
 def bootstrap_tables(request):
-    return render(request, 'working/bootstrap-tables.html')
+    return render(request, 'mycrm/bootstrap-tables.html')

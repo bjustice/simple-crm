@@ -8,8 +8,7 @@ urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
     path('<int:pk>/', views.DetailView.as_view(), name='detail'),
     path('<int:pk>/results/', views.ResultsView.as_view(), name='results'),
-    path('<int:question_id>/vote/', views.vote, name='vote'),
-    path('login', views.sign_in, name='work'),
+    path('login', views.sign_in, name='sign-in'),
     path('signup', views.sign_up, name='sign-up'),
     
     path('home', views.home, name='home'),
@@ -19,6 +18,8 @@ urlpatterns = [
     path('record/<int:record_id>', views.detail, name='detail'),
 
     path("logout", LogoutView.as_view(), name="logout"),
-    path('dashboard', views.dashboard, name='dashboard'),
+    path('buttons', views.buttons, name='buttons'),
+    path('settings', views.settings, name='settings'),
+    path('forms', views.forms, name='forms'),
     path('bootstrap-tables', views.bootstrap_tables, name='bootstrap_tables'),
 ]

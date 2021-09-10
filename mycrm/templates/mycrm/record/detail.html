@@ -28,16 +28,30 @@
                                     <div class="input-group">
                                         <input type="text" name="first_name" maxlength="100" class="form-control" value="{{ record.first_name }}" id="first_name" autofocus required>
                                     </div>  
-                                    <div class="form-group mb-4">
-                                        <label for="last_name">Last Name</label>
-                                        <div class="input-group">
-                                            <input type="text" name="last_name" class="form-control" value="{{ record.last_name }}" id="last_name" required>
-                                        </div>  
+                                    <label for="last_name">Last Name</label>
+                                    <div class="input-group">
+                                        <input type="text" name="last_name" class="form-control" value="{{ record.last_name }}" id="last_name" required>
                                     </div>
-                                    <div class="d-grid">
-                                        <button type="submit" class="btn btn-dark">Update Record</button>
-                                    </div>  
+                                    <label for="created_at">Created At</label>
+                                    <div class="input-group">
+                                        <input type="text" name="created_at" class="form-control" value="{{ record.created_at }}" id="created_at" required>
+                                    </div>
+                                    <label for="created_by">Created By</label>
+                                    <div class="input-group">
+                                        <input type="text" name="created_by" class="form-control" value="{{ record.created_by }}" id="created_by" required>
+                                    </div>
+                                    <label for="updated_at">Updated At</label>
+                                    <div class="input-group">
+                                        <input type="text" name="updated_at" class="form-control" value="{{ record.updated_at }}" id="updated_at" required>
+                                    </div>
+                                    <label for="updated_by">Updated By</label>
+                                    <div class="input-group">
+                                        <input type="text" name="updated_by" class="form-control" value="{{ record.updated_by }}" id="updated_by" required>
+                                    </div>
                                 </div>
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-dark">Update Record</button>
+                                </div>  
                             </form>
                         </div>
                     </div>
