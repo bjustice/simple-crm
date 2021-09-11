@@ -10,8 +10,8 @@ from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
 
-from ..forms import AddRecordForm, UpdateRecordForm
-from ..models import Record
+from mycrm.forms.forms import AddRecordForm, UpdateRecordForm
+from mycrm.models import Record
 
 logger = logging.getLogger(__name__)
 

@@ -1,0 +1,66 @@
+{% extends "mycrm/layouts/base.html" %}
+
+{% block title %} Add Record {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <main>
+        <!-- Section -->
+        <section class="d-flex align-items-center my-5 mt-lg-6 mb-lg-5">
+            <div class="container">
+                <div class="row justify-content-center form-bg-image">
+                    <div class="col-12 d-flex align-items-center justify-content-center">
+                        <div class="bg-white shadow-soft border rounded border-light p-4 p-lg-5 w-100 fmxw-500">
+                            <div class="text-center text-md-center mb-4 mt-md-0">
+                                <h2 class="h5">{{ status }}</h2>
+                            </div>
+                            <div class="text-center text-md-center mb-4 mt-md-0">
+                                <h1 class="mb-0 h3">Update Record</h1>
+                            </div>
+                            <form action="/mycrm/record/{{ record.id }}" method="post" class="mt-4">
+                                {% csrf_token %}
+                                <!-- Form -->
+                                <div class="form-group mb-4">
+                                    <label for="first_name">First Name</label>
+                                    <div class="input-group">
+                                        <input type="text" name="first_name" maxlength="100" class="form-control" value="{{ record.first_name }}" id="first_name" autofocus required>
+                                    </div>  
+                                    <label for="last_name">Last Name</label>
+                                    <div class="input-group">
+                                        <input type="text" name="last_name" class="form-control" value="{{ record.last_name }}" id="last_name" required>
+                                    </div>
+                                    <label for="created_at">Created At</label>
+                                    <div class="input-group">
+                                        <input type="text" name="created_at" class="form-control" value="{{ record.created_at }}" id="created_at" required>
+                                    </div>
+                                    <label for="created_by">Created By</label>
+                                    <div class="input-group">
+                                        <input type="text" name="created_by" class="form-control" value="{{ record.created_by }}" id="created_by" required>
+                                    </div>
+                                    <label for="updated_at">Updated At</label>
+                                    <div class="input-group">
+                                        <input type="text" name="updated_at" class="form-control" value="{{ record.updated_at }}" id="updated_at" required>
+                                    </div>
+                                    <label for="updated_by">Updated By</label>
+                                    <div class="input-group">
+                                        <input type="text" name="updated_by" class="form-control" value="{{ record.updated_by }}" id="updated_by" required>
+                                    </div>
+                                </div>
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-dark">Update Record</button>
+                                </div>  
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

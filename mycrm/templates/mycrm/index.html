@@ -1,13 +1,13 @@
-{% load static %}
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+    <head>
+        <title>MyQuickCRM</title>
 
-<link rel="stylesheet" type="text/css" href="{% static 'mycrm/style.css' %}">
-
-{% if latest_question_list %}
-    <ul>
-    {% for question in latest_question_list %}
-        <li><a href="{% url 'mycrm:detail' question.id %}">{{ question.question_text }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No polls are available.</p>
-{% endif %}
+        <meta name="description" content="HTML template for Software, Mobile App & SaaS applications.">
+        <meta name="keywords" content="software, mobile app, saas">
+        <meta name="author" content="MyQuickCRM">
+    </head>
+    <body>
+      MyQuickCRM
+    </body>
+</html>
