@@ -27,5 +27,4 @@ def post_record_group(request):
             record_group.save()
             data['status'] = 'Successly added record.'
         data['status'] = 'Unable to add record'
-    else:
-        return render(request,'mycrm/record_type/add.html', data)
+    return render(request,'mycrm/record_type/add.html', data)

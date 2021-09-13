@@ -33,10 +33,16 @@ def sign_in(request):
         else:
             msg = 'Error validating the form'    
     else:
-        return render(request, "mycrm/sign-in.html", {"form": form, "msg" : msg})
+        return render(request, "mycrm/accounts/sign-in.html", {"form": form, "msg" : msg})
 
 def sign_up(request):
     return render(request, 'mycrm/sign-up.html')
+
+
+
+@login_required(login_url="/mycrm/login")
+def dash(request):
+    return render(request, 'mycrm/dashboard.html')
 
 @login_required(login_url="/mycrm/login")
 def home(request):
@@ -44,19 +50,20 @@ def home(request):
 
 @login_required(login_url="/mycrm/login")
 def buttons(request):
-    return render(request, 'mycrm/ui-buttons.html')
+    return render(request, 'mycrm/volt/ui-buttons.html')
+
+@login_required(login_url="/mycrm/login")
+def forms(request):
+    return render(request, 'mycrm/volt/ui-forms.html')
+    
+@login_required(login_url="/mycrm/login")
+def modals(request):
+    return render(request, 'mycrm/volt/ui-modals.html')
 
 @login_required(login_url="/mycrm/login")
 def settings(request):
-    return render(request, 'mycrm/settings.html')
+    return render(request, 'mycrm/volt/settings.html')
     
 @login_required(login_url="/mycrm/login")
-def forms(request):
-    return render(request, 'mycrm/ui-forms.html')
-
-@login_required(login_url="/mycrm/login")
-def dash(request):
-    return render(request, 'mycrm/dashboard.html')
-
 def bootstrap_tables(request):
     return render(request, 'mycrm/bootstrap-tables.html')

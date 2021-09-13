@@ -24,5 +24,6 @@ urlpatterns = [
     path('buttons', views.buttons, name='buttons'),
     path('settings', views.settings, name='settings'),
     path('forms', views.forms, name='forms'),
+    path('modals', views.modals, name='modals'),
     path('bootstrap-tables', views.bootstrap_tables, name='bootstrap_tables'),
 ]
