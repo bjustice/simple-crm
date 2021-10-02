@@ -5,10 +5,12 @@ from django.contrib.auth.models import User
 class AddRecordForm(forms.Form):
     first_name = forms.CharField(label='First Name', max_length=100)
     last_name = forms.CharField(label='Last Name', max_length=100)
+    record_type = forms.CharField(label='Record Type', max_length=100)
 
 class UpdateRecordForm(forms.Form):
     first_name = forms.CharField(label='First Name', max_length=100)
     last_name = forms.CharField(label='Last Name', max_length=100)
+    record_type = forms.CharField(label='Record Type', max_length=100)
 
 class LoginForm(forms.Form):
     username = forms.CharField(

@@ -29,7 +29,7 @@
 													<div class="col-lg-4 col-sm-6">
 														<label for="first_name">First Name</label>
 														<div class="input-group">
-															<input type="text" name="first_name" maxlength="100" class="form-control" placeholder="Bob" id="first_name" autofocus required>
+															<input type="text" name="first_name" maxlength="100" class="form-control" placeholder="First Name" id="first_name" autofocus required>
 														</div>
 														<label for="last_name">Last Name</label>
 															<div class="input-group">
@@ -37,13 +37,13 @@
 														</div>
 													</div>
 													<div class="col-lg-4 col-sm-6">
-														<label for="first_name">Record Type</label>
+														<label for="record_type">Record Type</label>
 														<div class="input-group">
-															<select class="form-select" name="record-type" id="record-type" aria-label="Record Type">
+															<select class="form-select" name="record_type" id="record_type" aria-label="Record Type" required>
 																<option selected>Choose a Record Type</option>
 					
 																{% for type in types %}
-																	<option value="{{type.id}}">{{company.group_name}}</option>
+																	<option value="{{type.id}}">{{type.group_name}}</option>
 																{% endfor %}
 															</select>
 														</div>

@@ -5,6 +5,14 @@
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}{% endblock stylesheets %}
 
+<script>
+        // Attach a submit handler to the form
+        $( "#searchForm" ).submit(function( event ) {
+         
+        });
+</script>
+
+
 {% block content %}
 
     <main>
@@ -40,10 +48,21 @@
                                         </select>
                                     </div>
                                 </div>
-                                
+
+                                <div class="form-group mb-4">
+                                    <div class="input-group">
+                                        <input type="text" name="group_name" maxlength="100" class="form-control" placeholder="Group Name" id="group_name" autofocus required>
+                                    </div>
+                                </div>
+
                                 <div class="form-group mb-4">
                                     <div class="d-grid">
-                                        <button type="submit" class="btn btn-dark">Add Record</button>
+                                        <button type="submit" class="btn btn-dark">Add Data Point</button>
+                                    </div>  
+                                </div>
+                                <div class="form-group mb-4">
+                                    <div class="d-grid">
+                                        <button type="submit" class="btn btn-dark">Add Record Type</button>
                                     </div>  
                                 </div>
                             </form>

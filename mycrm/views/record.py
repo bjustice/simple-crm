@@ -22,11 +22,11 @@ def post_record(request):
     if request.method == 'POST':
         form = AddRecordForm(request.POST)
         if form.is_valid():
-            record = Record(first_name=form.cleaned_data['first_name'], last_name=form.cleaned_data['last_name'])
-            record.save()
-            
+            record = Record(first_name=form.cleaned_data['first_name'], last_name=form.cleaned_data['last_name'], record_group_id=form.cleaned_data['record_type'])
+            record.save()    
             data['status'] = 'Successly added record.'
-        data['status'] = 'Unable to add record'
+        else:
+            data['status'] = 'Unable to add record'
     return render(request, 'mycrm/record/add.html', data)
 
 @login_required(login_url="/mycrm/login")

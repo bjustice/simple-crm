@@ -20,6 +20,8 @@ class Company(Base):
 class RecordGroup(Base):
     group_name = models.CharField(max_length=50)
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
+
+    numberOfFields = models.IntegerField(default=0)
     def __str__(self):
         return self.id
 

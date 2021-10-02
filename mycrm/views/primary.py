@@ -42,7 +42,7 @@ def sign_up(request):
 
 @login_required(login_url="/mycrm/login")
 def dash(request):
-    return render(request, 'mycrm/dashboard.html')
+    return render(request, 'mycrm/volt/dashboard.html')
 
 @login_required(login_url="/mycrm/login")
 def home(request):

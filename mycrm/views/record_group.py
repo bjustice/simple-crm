@@ -23,7 +23,11 @@ def post_record_group(request):
         print(form)
         if form.is_valid():
             print(form.cleaned_data)
-            record_group = RecordGroup(group_name=form.cleaned_data['group_name'], company_id=form.cleaned_data['company'])
+            record_group = RecordGroup(
+                group_name=form.cleaned_data['group_name'],
+                company_id=form.cleaned_data['company'],
+                number_of_fields=form.cleaned_data['number_of_fields']
+            )
             record_group.save()
             data['status'] = 'Successly added record.'
         data['status'] = 'Unable to add record'
