@@ -1,0 +1,30 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        let form_count = $("[name=extra_field_count]").val();
+        // get extra form count so we know what index to use for the next item.
+        console.log(form_count)
+        $("#add-another").click(function() {
+            
+            let element = $('<input type="text"/>');
+            element.attr('name', 'extra_field_' + form_count);
+            
+            $("#forms").append(element);
+            $("[name=extra_field_count]").val(form_count);
+
+            form_count ++;
+        });
+    });
+</script>
+
+
+<form method="post">
+    {% csrf_token %}
+
+    <div id="forms">
+        {{ form.as_p }}
+    </div>
+    <button type="submit">Button</button>
+</form>
+
+<button id="add-another">add another</button>

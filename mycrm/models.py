@@ -3,6 +3,7 @@ import datetime
 from django.db import models
 from django.utils import timezone
 from django.contrib import admin
+from django.db.models import JSONField
 
 class Base(models.Model):
     created_by = models.CharField(max_length=200, default="admin")
@@ -22,6 +23,7 @@ class RecordGroup(Base):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
 
     numberOfFields = models.IntegerField(default=0)
+    field_definitions = JSONField(default=dict)
     def __str__(self):
         return self.id
 

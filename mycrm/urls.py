@@ -16,6 +16,7 @@ urlpatterns = [
     path('summary', views.summary, name='summary'),
     
     path('recordgroup', views.post_record_group, name='add-record-group'),
+    path('sample', views.myview, name='my-view'),
     path('company', views.post_company, name='add-company'),
 
     path('dataloader', views.data_loader, name='data=loader'),
