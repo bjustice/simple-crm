@@ -1,5 +1,7 @@
 from functools import wraps
 import logging
+import json
+from django.contrib.auth.models import Group
 
 from django.http import HttpResponseRedirect
 
@@ -17,29 +19,38 @@ logger = logging.getLogger(__name__)
 @login_required(login_url="/mycrm/login")
 def post_record_group(request):
     
-    data = { 'companies': Company.objects.all(), 'extra_field_count': 0 }
+    data = { 'companies': Company.objects.all(), }
     if request.method == 'POST':
-        form = AddRecordGroupForm(request.POST)
+        custom_field_count = request.POST.get('custom_field_count')
+        form = AddRecordGroupForm(request.POST, custom_fields=custom_field_count)
+        print(form.is_valid())
         print(form)
         if form.is_valid():
+            print(form.cleaned_data)
+
+            fields = []
+            for i in range(0, int(custom_field_count)):
+                field_name = 'custom_field_' + str(i)
+                fields.append(form.cleaned_data[field_name])
+            fieldDefs = __format_field_defs__(fields)
+
             record_group = RecordGroup(
                 group_name=form.cleaned_data['group_name'],
                 company_id=form.cleaned_data['company'],
-                number_of_fields=form.cleaned_data['number_of_fields'],
-                custom_fields=form.cleaned_data['custom_field_count']
+                field_definitions=fieldDefs,
             )
             record_group.save()
             data['status'] = 'Successly added record.'
-        data['status'] = 'Unable to add record'
+        else:
+            data['status'] = 'Unable to add record'
     return render(request,'mycrm/record_type/add.html', data)
 
-def myview(request):
-    print(request.POST)
-    if request.method == 'POST':
-        print("COUNT!!!" + request.POST.get('extra_field_count'))
-        # form = MyForm(request.POST, extra=request.POST.get('extra_field_count'))
-        if form.is_valid():
-            print("valid!")
-    else:
-        form = MyForm()
-    return render(request, "mycrm/record_type/example.html", { 'form': form })
+
+def __format_field_defs__(fields):
+    fieldDefs=  {}
+    
+    for index, field in enumerate(fields):
+        fieldDefs[str(index)] = field
+
+    print(fieldDefs)
+    return fieldDefs

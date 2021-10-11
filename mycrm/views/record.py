@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
@@ -16,8 +16,17 @@ from mycrm.models import Record, RecordGroup
 logger = logging.getLogger(__name__)
 
 @login_required(login_url="/mycrm/login")
-def post_record(request):
+def select_type(request):
     
+    data = { 'types': RecordGroup.objects.all(), }
+    if request.method == 'POST':
+        return redirect('record/create', { 'record_type': 4, })
+    return render(request, 'mycrm/record/select_type.html', data)
+
+@login_required(login_url="/mycrm/login")
+def post_record(request):
+    print(request)
+
     data = { 'types': RecordGroup.objects.all(), }
     if request.method == 'POST':
         form = AddRecordForm(request.POST)

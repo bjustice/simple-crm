@@ -9,12 +9,14 @@
 <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'></script>
 <script type='text/javascript'>
     $(document).ready(function(){
-        let custom_field_count = $("[name=custom_field_count]").val();
-        console.log(custom_field_count);
+        let custom_field_count =  $("[name='custom_field_count']").val();
+        console.log("FIELD COUNT: " + custom_field_count);
 
         $( "#add-data-point" ).click(function() {
-            $("#custom-fields").append( `<div class='input-group'><input type='text' name='custom-field-${custom_field_count}' maxlength='100' class='form-control' placeholder='Custom Field ${custom_field_count}' id='group_name' autofocus required></div>` );
-            $("[name=custom_field_count]").val() += 1;
+            $("#custom-fields").append( `<label for="group_name">Custom Field ${custom_field_count}</label><div class='input-group'><input type='text' name='custom_field_${custom_field_count}' maxlength='100' class='form-control' placeholder='Custom Field ${custom_field_count}' id='custom_field_${custom_field_count}' autofocus required></div>` );
+
+            custom_field_count++;            
+            $("[name='custom_field_count']").val(custom_field_count);
         });
     });
 </script>
@@ -37,6 +39,7 @@
                                 {% csrf_token %}
                                 <!-- Form -->
                                 <div class="form-group mb-4">
+                                    <input type="text" id="custom_field_count" name="custom_field_count" value="0" maxlength="100" hidden="true">
                                     <label for="group_name">Record Type Name</label>
                                     <div class="input-group">
                                         <input type="text" name="group_name" maxlength="100" class="form-control" placeholder="Group Name" id="group_name" autofocus required>

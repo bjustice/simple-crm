@@ -5,11 +5,11 @@ from django.contrib.auth.models import User
 class AddRecordGroupForm(forms.Form):
     group_name = forms.CharField(label='Group Name', max_length=100)
     company = forms.CharField(label='Company', max_length=100)
-    numberOfFields = forms.IntegerField(label='Number of Fields')
     custom_field_count = forms.CharField(widget=forms.HiddenInput())
 
     def __init__(self, *args, **kwargs):
-        custom_fields = kwargs.pop('custom_fields', 0)
+        custom_fields = kwargs.pop('custom_fields', -1)
+        print(custom_fields)
 
         super(AddRecordGroupForm, self).__init__(*args, **kwargs)
         self.fields['custom_field_count'].initial = custom_fields

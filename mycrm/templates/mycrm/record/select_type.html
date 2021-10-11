@@ -1,0 +1,52 @@
+{% extends "mycrm/layouts/base.html" %}
+
+{% block title %} Add Record {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <main>
+        <!-- Section -->
+        <section class="d-flex align-items-center my-5 mt-lg-6 mb-lg-5">
+            <div class="container">
+                <div class="row justify-content-center form-bg-image">
+                    <div class="col-12 d-flex align-items-center justify-content-center">
+                        <div class="bg-white shadow-soft border rounded border-light p-4 p-lg-5 w-100 fmxw-500">
+                            <div class="text-center text-md-center mb-4 mt-md-0">
+                                <h1 class="mb-0 h3">Choose A Record Type Record</h1>
+                            </div>
+                            <form action="/mycrm/record" method="post" class="mt-4">
+                                {% csrf_token %}
+                                <!-- Form -->
+                                <div class="form-group mb-4">
+                                    <div class="row mb-4">
+                                        <label for="record_type">Record Type</label>
+                                        <div class="input-group">
+                                            <select class="form-select" name="record_type" id="record_type" aria-label="Record Type" required>
+                                                <option selected>Choose a Record Type</option>
+    
+                                                {% for type in types %}
+                                                    <option value="{{type.id}}">{{type.group_name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-grid">
+                                        <button type="submit" class="btn btn-dark">Add Record</button>
+                                    </div>  
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
