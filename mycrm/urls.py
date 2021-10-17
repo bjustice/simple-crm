@@ -9,7 +9,7 @@ urlpatterns = [
     #record
     path('record', views.select_type, name='select-record-type'),
     
-    path('record/create', views.post_record, name='add-record'),
+    path('record/group/<int:group_id>', views.post_record, name='add-record'),
     path('record/<int:record_id>', views.detail, name='detail'),
     path('summary', views.summary, name='summary'),
     

@@ -28,8 +28,7 @@ class RecordGroup(Base):
         return self.id
 
 class Record(Base):
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
+    custom_fields = JSONField(default=dict)
     record_group = models.ForeignKey(RecordGroup, on_delete=models.CASCADE)
     def __str__(self):
         return self.id

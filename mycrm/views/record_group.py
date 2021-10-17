@@ -23,10 +23,7 @@ def post_record_group(request):
     if request.method == 'POST':
         custom_field_count = request.POST.get('custom_field_count')
         form = AddRecordGroupForm(request.POST, custom_fields=custom_field_count)
-        print(form.is_valid())
-        print(form)
         if form.is_valid():
-            print(form.cleaned_data)
 
             fields = []
             for i in range(0, int(custom_field_count)):

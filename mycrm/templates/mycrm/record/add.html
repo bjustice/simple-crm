@@ -17,7 +17,7 @@
 						<div class="text-center text-md-center mb-4 mt-md-0">
 							<h1 class="mb-0 h3">Add Record</h1>
 						</div>
-						<form action="/mycrm/record" method="post" class="mt-4">
+						<form action="/mycrm/record/group/2" method="post" class="mt-4">
 							{% csrf_token %}
 							<!-- Form -->
 							<div class="form-group mb-4">
@@ -27,14 +27,13 @@
 											<div class="card-body">     
 												<div class="row mb-4">
 													<div class="col-lg-4 col-sm-6">
-														<label for="first_name">First Name</label>
-														<div class="input-group">
-															<input type="text" name="first_name" maxlength="100" class="form-control" placeholder="First Name" id="first_name" autofocus required>
-														</div>
-														<label for="last_name">Last Name</label>
+														{% for key, field in field_definitions.items %}	
+															
+															<label for="first_name">{{ field }}</label>
 															<div class="input-group">
-																<input type="text" name="last_name" class="form-control" placeholder="Last Name" id="last_name" required>
-														</div>
+																<input type="text" name="custom_field_{{key}}" maxlength="100" class="form-control" placeholder="{{ field }}" id="custom_field_{{key}}" autofocus required>
+															</div>
+														{% endfor %}
 													</div>
 													<div class="col-lg-4 col-sm-6">
 														<label for="record_type">Record Type</label>
